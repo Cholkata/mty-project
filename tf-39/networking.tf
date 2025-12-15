@@ -51,6 +51,7 @@ resource "azurerm_network_security_group" "nsg1" {
       source_address_prefix     = "*"
       destination_address_prefix = "*"
       }
+      
 }
 
 resource "azurerm_subnet_network_security_group_association" "subnet_nsg_association" {
