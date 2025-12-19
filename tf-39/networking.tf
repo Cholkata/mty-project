@@ -3,7 +3,7 @@ resource "azurerm_virtual_network" "vnet1" {
     name                = "vnet1"
     location            = azurerm_resource_group.RG1.location
     resource_group_name = azurerm_resource_group.RG1.name
-    address_space       = ["10.0.0.0/23"]
+    address_space       = ["10.0.0.0/22"]
 }
 
 
@@ -71,28 +71,36 @@ resource "azurerm_network_interface" "nic" {
         private_ip_address_allocation = "Dynamic"
     }
 }
-
 resource "azurerm_linux_virtual_machine" "vm" {
-    count               = 2
-    name                = "linux-vm-${count.index + 1}"
-    resource_group_name = azurerm_resource_group.RG1.name
-    location            = azurerm_resource_group.RG1.location
-    size                = "Standard_B1s"
-    admin_username      = "adminuser"
-    admin_password      = random_password.db_password.result
-    disable_password_authentication = false
-    network_interface_ids = [
-        azurerm_network_interface.nic[count.index].id,
-    ]
-    os_disk {
-        caching              = "ReadWrite"
-        storage_account_type = "Standard_LRS"
-    }
-    source_image_reference {
-        publisher = "Canonical"
+  count               = 2
+  name                = "linux-vm-${count.index + 1}"
+  resource_group_name = azurerm_resource_group.RG1.name
+  location            = azurerm_resource_group.RG1.location
+  size                = "Standard_B1s"
+
+  admin_username                  = "adminuser"
+  disable_password_authentication = true
+
+  admin_ssh_key {
+    username   = "adminuser"
+    public_key = file("~/.ssh/tf-ssh.pub")
+  }
+
+  network_interface_ids = [
+    azurerm_network_interface.nic[count.index].id,
+  ]
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
     offer     = "ubuntu-24_04-lts"
     sku       = "server"
     version   = "latest"
-    }
-    computer_name  = "hostname-${count.index + 1}"
+  }
+
+  computer_name = "hostname-${count.index + 1}"
 }
