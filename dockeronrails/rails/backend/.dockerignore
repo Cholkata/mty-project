@@ -30,12 +30,14 @@
 /tmp/storage/*
 !/tmp/storage/.keep
 
+# Ignore assets.
+/node_modules/
+/app/assets/builds/*
+!/app/assets/builds/.keep
+/public/assets
+
 # Ignore CI service files.
 /.github
-
-# Ignore Kamal files.
-/config/deploy*.yml
-/.kamal
 
 # Ignore development files
 /.devcontainer
@@ -43,6 +45,3 @@
 # Ignore Docker-related files
 /.dockerignore
 /Dockerfile*
-
-node_modules
-vendor/bundle
