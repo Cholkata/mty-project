@@ -1,41 +1,25 @@
 services:
-  logs-init:
-    image: busybox
-    command: sh -c "mkdir -p /logs && touch /logs/node.log && chown -R 10001:10001 /logs"
-    volumes:
-      - logs:/logs
-
   rails:
     build: ./rails/backend
     environment:
-      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
-      HOME: /tmp
-    depends_on:
-      - logs-init
+      RAILS_ENV: production
+      RAILS_LOG_TO_STDOUT: "true"
+      SECRET_KEY_BASE: 535b211369327e3ef9fe0f0492318b8b3d059fdf99d7f8cc127f542b71a61a47a63c127a89809b136f721e1b150bb7ed830cec76bbf57bead6e9e93e9c95bdaa
     volumes:
-      - logs:/logs
-      - rails_tmp:/app/tmp
-      - rails_log:/app/log
-      - rails_storage:/app/storage
+      - rails_tmp:/rails/tmp
+      - rails_storage:/rails/storage
     ports:
       - "3000:3000"
-    read_only: true
     tmpfs:
       - /tmp
 
   node:
     build: ./node
-    depends_on:
-      - logs-init
     volumes:
-      - logs:/logs
-    read_only: true
-    tmpfs:
-      - /tmp
+      - node_logs:/app/logs
 
 volumes:
-  logs:
   rails_tmp:
-  rails_log:
   rails_storage:
-  node_tmp:
+  node_logs:
+

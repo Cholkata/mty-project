@@ -1,0 +1,26 @@
+{
+  "name": "dockeronrails",
+  "version": "1.0.0",
+  "description": "Test dockeronrails",
+  "keywords": [
+    "container"
+  ],
+  "homepage": "https://github.com/Cholkata/mty-project#readme",
+  "bugs": {
+    "url": "https://github.com/Cholkata/mty-project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cholkata/mty-project.git"
+  },
+  "license": "ISC",
+  "author": "GCholov",
+  "type": "git",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "\"echo \"Test\"\""
+  }
+}
