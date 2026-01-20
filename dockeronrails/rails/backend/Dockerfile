@@ -1,55 +1,69 @@
-# ---------- build stage ----------
-FROM ruby:3.4-slim AS build
+# syntax = docker/dockerfile:1
 
-ENV RAILS_ENV=production 
-ENV BUNDLE_WITHOUT="development test"
+ARG RUBY_VERSION=3.4.1
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim AS base
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    libyaml-dev \
-    libsqlite3-dev \
-    libpq-dev \
-    pkg-config \
-    git \
-  && rm -rf /var/lib/apt/lists/*
+WORKDIR /rails
 
+ENV RAILS_ENV="production" \
+    BUNDLE_DEPLOYMENT="1" \
+    BUNDLE_PATH="/usr/local/bundle" \
+    BUNDLE_WITHOUT="development"
 
-WORKDIR /app
+# --------------------
+# Build stage
+# --------------------
+FROM base AS build
+
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
+      build-essential \
+      git \
+      libvips \
+      pkg-config \
+      nodejs \
+      npm && \
+    npm install -g yarn
 
 COPY Gemfile Gemfile.lock ./
-RUN bundle install --jobs=4 --retry=3
+RUN bundle install && \
+    rm -rf ~/.bundle \
+           "${BUNDLE_PATH}"/ruby/*/cache \
+           "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
+    bundle exec bootsnap precompile --gemfile
 
 COPY . .
 
-# ---------- runtime stage ----------
-FROM ruby:3.4-slim
+RUN chmod 1777 /tmp
+RUN bundle exec bootsnap precompile app/ lib/
 
-ENV RAILS_ENV=production
-ENV BUNDLE_WITHOUT="development test"
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libpq5 \
-    libsqlite3-0 \
-    libssl3 \
-    libstdc++6 \
-    tzdata \
-  && rm -rf /var/lib/apt/lists/*
+# --------------------
+# Runtime stage
+# --------------------
+FROM base
 
-RUN useradd -m -u 10001 appuser
-
-WORKDIR /app
-
-COPY --from=build /app /app
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
+      curl \
+      libsqlite3-0 \
+      libvips && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /usr/local/bundle /usr/local/bundle
+COPY --from=build /rails /rails
 
-RUN chown -R appuser:appuser \
-    /app \
-    /usr/local/bundle \
-    /usr/local/lib/ruby/gems
+# ✅ Create required Rails dirs explicitly
+RUN mkdir -p /rails/tmp /rails/log /rails/storage /rails/db && \
+    chmod 1777 /tmp && \
+    useradd rails --create-home --shell /bin/bash && \
+    chown -R rails:rails /rails
 
-USER appuser
+USER rails
+
+# ✅ Correct container path
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 EXPOSE 3000
-CMD ["bundle", "exec", "puma", "-b", "tcp://0.0.0.0:3000"]
+CMD ["./bin/rails", "server"]
 
