@@ -4,7 +4,7 @@ services:
     environment:
       RAILS_ENV: production
       RAILS_LOG_TO_STDOUT: "true"
-      SECRET_KEY_BASE: 535b211369327e3ef9fe0f0492318b8b3d059fdf99d7f8cc127f542b71a61a47a63c127a89809b136f721e1b150bb7ed830cec76bbf57bead6e9e93e9c95bdaa
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
     volumes:
       - rails_tmp:/rails/tmp
       - rails_storage:/rails/storage
