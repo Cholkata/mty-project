@@ -34,32 +34,11 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential curl git pkg-config libyaml-dev && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Install JavaScript dependencies and Node.js for asset compilation
-#
-# Uncomment the following lines if you are using NodeJS need to compile assets
-
-ARG NODE_VERSION=18.12.0
-ARG YARN_VERSION=1.22.19
-ENV PATH=/usr/local/node/bin:$PATH
-RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
-    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
-    npm install -g yarn@$YARN_VERSION && \
-    npm install -g mjml && \
-    rm -rf /tmp/node-build-master
-
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
-
-# Install node modules
-#
-# Uncomment the following lines if you are using NodeJS need to compile assets
-#
-COPY package.json yarn.lock ./
-RUN --mount=type=cache,id=yarn,target=/rails/.cache/yarn YARN_CACHE_FOLDER=/rails/.cache/yarn \
-     yarn install --frozen-lockfile
 
 # Copy application code
 COPY . .
@@ -88,4 +67,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start server via Thruster by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
+CMD ["./bin/rails", "./tcp_server.rb"]

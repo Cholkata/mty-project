@@ -1,17 +1,21 @@
-FROM node:20-alpine AS builder
-
-# Create non-root user
-RUN addgroup -g 10001 app && \
-    adduser -D -u 10001 -G app appuser
+# syntax=docker/dockerfile:1
+FROM node:24.11.1-alpine
 
 WORKDIR /app
 
-# Copy only the worker script
-COPY worker.js .
+# Copy package files first (better caching)
+COPY package.json package-lock.json* ./
 
-# Switch to non-root
-USER appuser
+# Install dependencies
+RUN npm install
 
-# Healthcheck-friendly entrypoint
-CMD ["node", "worker.js"]
+# Copy the rest of your code
+COPY . .
 
+# No build step needed for plain JS
+ENV NODE_ENV=development
+
+EXPOSE 3000
+
+# POINT THIS TO YOUR ACTUAL FILENAME (e.g., server.js or index.js)
+CMD ["node", "server.js"]
