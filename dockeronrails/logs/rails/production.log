@@ -1,0 +1,58 @@
+# Logfile created on 2026-01-23 13:12:42 +0000 by logger.rb/v1.7.0
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:12:52 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 18ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:12:53 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:22:01 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 17ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:23:39 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:33:09 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 15ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:45:56 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 19ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:45:58 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:45:58 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:45:58 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:46:28 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:46:29 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:47:40 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 14ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:48:11 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:48:18 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 13:58:06 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 16ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 14:03:34 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 20ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 14:13:02 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 13ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 14:16:26 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 20ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+Started GET "/" for 172.19.0.1 at 2026-01-23 14:16:26 +0000
+Processing by HelloController#index as */*
+Completed 200 OK in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)

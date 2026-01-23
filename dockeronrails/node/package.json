@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "express": "^5.2.1",
-    "typescript": "^5.9.3"
+    "redis": "^5.10.0",
+    "typescript": "^5.9.3",
+    "winston": "^3.19.0"
   }
 }

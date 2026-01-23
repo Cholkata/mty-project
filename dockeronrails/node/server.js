@@ -1,11 +1,12 @@
-const express = require('express');
-const app = express();
-const PORT = 3001; // Or whatever port you want
+const http = require('http');
+const logger = require('./logger');
 
-app.get('/', (req, res) => {
-  res.send('Node server is running!');
+const server = http.createServer((req, res) => {
+  logger.info(`Request: ${req.method} ${req.url}`);
+  res.end('Hello from Node');
 });
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Node server listening on port ${PORT}`);
+server.listen(3001, '0.0.0.0', () => {
+  logger.info('Node server listening on port 3001');
 });
+
