@@ -1,0 +1,11 @@
+{"level":"info","message":"Node server listening on port 3001","timestamp":"2026-01-23T13:27:43.126Z"}
+{"level":"error","message":"Something went wrong with the database connection","timestamp":"2026-01-23T13:27:43.132Z"}
+{"level":"info","message":"Node server listening on port 3001","timestamp":"2026-01-23T13:45:14.476Z"}
+{"level":"info","message":"Node server listening on port 3001","timestamp":"2026-01-23T13:57:24.927Z"}
+{"level":"info","message":"Node server listening on port 3001","timestamp":"2026-01-23T14:03:16.730Z"}
+{"level":"info","message":"Node server listening on port 3001","timestamp":"2026-01-23T14:11:47.015Z"}
+{"level":"info","message":"Request: GET /","timestamp":"2026-01-23T14:11:56.826Z"}
+{"level":"info","message":"Request: GET /","timestamp":"2026-01-23T14:13:03.944Z"}
+{"level":"info","message":"Request: GET /","timestamp":"2026-01-23T14:13:04.854Z"}
+{"level":"info","message":"Node server listening on port 3001","timestamp":"2026-01-23T14:16:10.313Z"}
+{"level":"info","message":"Request: GET /","timestamp":"2026-01-23T14:16:23.916Z"}
